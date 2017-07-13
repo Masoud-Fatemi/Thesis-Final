@@ -1,0 +1,115 @@
+%*************************************************
+% In this file the first few pages are typeset.
+% Make changes accordingly.
+%*************************************************
+
+%***************************
+% Page 1: Besmelah
+%***************************
+\pagenumbering{adadi}
+\setcounter{page}{5}
+\thispagestyle{empty}
+\begin{center}
+	~\vfill
+	\includegraphics[scale=1]{firstpage-img/besm}
+	~\vfill
+\end{center}
+\pagebreak
+
+%***************************
+% Page 2: Title
+%***************************
+\thispagestyle{empty}
+\newgeometry{left=3cm,right=3cm,top=2cm}
+\begin{center}
+\includegraphics[height=3cm]{firstpage-img/IUTLogoFA}
+%\vspace{0.5cm}
+
+{\large
+	\textbf{دانشگاه صنعتی اصفهان}\\
+	دانشکده  برق و کامپیوتر
+}
+\vspace{3.5cm}
+
+{\LARGE
+	\textbf{توسعه‌ی ماشین بلتزمن محدود برای مدل‌سازی مشترک موضوع و احساس در داده‌های متنی}\\
+}
+\vspace{3.5cm}
+
+{\large
+	\textbf{پایان‌نامه کارشناسی ارشد مهندسی کامپیوتر - هوش مصنوعی}\\
+}
+\vspace{1cm}
+
+{\Large
+	\textbf{مسعود فاطمی}\\
+}
+\vspace{2.5cm}
+
+{\large
+	استاد راهنما\\
+}
+\vspace{0.5cm}
+
+{\Large
+	\textbf{دکتر مهران صفایانی}\\
+}
+\vspace{1cm}
+{\large
+	استاد مشاور\\
+}
+\vspace{0.5cm}
+{\Large
+	\textbf{دکتر عبدالرضا میرزایی}\\
+}
+\vspace{2cm}
+
+{\Large
+	\textbf{1395}
+}
+
+\end{center}
+\restoregeometry
+\pagebreak
+
+%***************************
+% Page3: Acknowledgment (Optional)
+%***************************
+\thispagestyle{empty}
+\vspace*{3cm}
+
+{\large
+	\textbf{تشکر و قدردانی}\\
+
+	
+پروردگار منّان را سپاسگزارم ......
+
+}
+\restoregeometry
+\pagebreak
+
+%***************************
+% 8th page: Table of contents
+%***************************
+
+\titleformat{\chapter}[display]
+	{\normalfont\LARGE\bfseries\centering}{\chaptertitlename ~ \tartibi{chapter}}{20pt}{\LARGE}
+
+\newgeometry{left=2.5cm,right=3cm,top=3cm,bottom=2.5cm,includehead=false,headsep=1cm,footnotesep=.5cm}
+\baselineskip=.7cm
+
+\addtocontents{toc}{\textbf{\underline{عنوان}}}
+\addtocontents{toc}{\hfill\textbf{\underline{صفحه}}\par}
+\tableofcontents
+\listoffigures
+\listoftables
+\pagebreak
+
+
+%\addcontentsline{toc}{section}{فهرست تصاویر}
+%\listoffigures
+
+% change the font and margins of a chapter title
+\titlespacing*{\chapter}{0pt}{3.5cm}{6cm}
+\titleformat{\chapter}[display]
+	{\normalfont\LARGE\bfseries\raggedright}{\chaptertitlename ~ \tartibi{chapter}}{20pt}{\LARGE}

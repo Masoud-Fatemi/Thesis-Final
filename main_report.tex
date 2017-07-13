@@ -1,0 +1,48 @@
+ \makeatletter
+ {\def\thebibliography#1{\chapter*{\refname\@mkboth
+ 			{\uppercase{\refname}}{\uppercase{\refname}}}\list
+ 		{[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}
+ 			\rightmargin\labelwidth
+ 			\advance\rightmargin\labelsep
+ 			\advance\rightmargin\bibindent
+ 			\itemindent -\bibindent
+ 			\listparindent \itemindent
+ 			\parsep \z@
+ 			\usecounter{enumi}}
+ 		\def\newblock{}
+ 		\sloppy
+ 		\sfcode`\.=1000\relax}}
+ \makeatother
+ \documentclass[a4paper,fleqn]{report} 
+ \include{preamble}		
+ \defpersianfont\titlefont[Scale=1]{XB Titre}
+ \renewcommand{\bibname}{\rl{مراجع}}	
+ 
+ \begin{document}
+ 	
+	\include{firstpages}							 	
+ 	\include{abstract}							 
+ 	\newgeometry{left=2.5cm,right=3cm,top=3cm,bottom=2.5cm,includehead=false,headsep=1cm,footnotesep=.5cm}
+ 	\settextfont{XB Zar}\fontsize{12}{6}\selectfont
+ 	\setlatintextfont{Times New Roman}\fontsize{11}{6}
+ 	\baselineskip=.9cm 		
+ 	\pagestyle{myheadings} % Moving page number to top right
+ 	\include{chap1}
+ 	\include{chap2}
+ 	\include{chap3}
+ 	\include{chap4}
+ 	\include{chap5}
+ 	\include{chap6}
+ 	\pagestyle{empty}
+ 	\resetlatinfont 	
+ 	\begin{LTRitems}
+ 		\addcontentsline{toc}{section}{مراجع}
+ 		\onehalfspacing
+ 		\bibliographystyle{IEEEtran}
+ 		%\bibliographystyle{plain}
+ 		%{plain}%{chicago-fa}%{plainnat-fa}%
+ 		\bibliography{IEEEabrv,refs} 		
+ 	\end{LTRitems} 	
+ 	\include{abstract_english}
+	
+ \end{document}
