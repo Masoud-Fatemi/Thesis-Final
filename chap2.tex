@@ -111,8 +111,11 @@ $N$
 \section{تابع لجستیک}
 تابع لجستیک\LTRfootnote{Logistic Function}
  یک منحنی متداول از خانواده‌ی منحنی‌های سیگمویدی\LTRfootnote{Sigmoid Curves}
-  است. معاد‌له‌ی
-\ref{eq1}
+  است. معاد‌له‌ی:
+\begin{align}
+	f(x) = \frac{L}{1+e^{-k(x-x_0)}}
+	\label{eq1}
+\end{align}
 نشان دهنده یک تابع لجستیک است که در آن
 $x_0$
 نقطه میانی منحنی سیگمویدی روی محور
@@ -122,10 +125,7 @@ $L$
 مقدار بیشینه منحنی در مثبت بی‌ نهایت و
 $k$
 برابر با شیب منحنی است.
-\begin{align}
-f(x) = \frac{L}{1+e^{-k(x-x_0)}}
-\label{eq1}
-\end{align}
+
 
  در شکل
 \ref{fig3}
@@ -154,8 +154,11 @@ K
 $\sigma(\textbf{z})$ 
 تشکیل شده از اعداد حقیقی‌ بین بازه‌ی
 $(0,1)$
-به گونه‌ای که مجموع آنها برابر با ۱ باشد استفاده می‌‌کنند. رابطه‌ی
-\ref{eq2}
+به گونه‌ای که مجموع آنها برابر با ۱ باشد استفاده می‌‌کنند. رابطه‌ی:
+\begin{align}
+	\sigma(\textbf{z}) = \frac{e^{z_i}}{\sum_{k=1}^{K}e^{z_k}} \quad\quad for\quad i = 1, ..., K
+	\label{eq2}
+\end{align}
 معادله‌ی تابع
 Softmax
 را نشان می‌‌دهد. با توجه به خاصیت ذکر شده برای بردار حاصل از تابع
@@ -163,33 +166,26 @@ Softmax
 در تئوری احتمال از این خروجی برای تعریف یک توزیع احتمالی که دارای
 K
 خروجی ممکن است استفاده می‌کنند. در بخش‌های بعدی از این تابع برای تعریف توزیع‌های احتمالی‌ برای موضوعات مختلف استفاده می‌‌کنیم.
-\begin{align}
-\sigma(\textbf{z}) = \frac{e^{z_i}}{\sum_{k=1}^{K}e^{z_k}} \quad\quad for\quad i = 1, ..., K
-\label{eq2}
-\end{align}
+
 
 \section{تابع گاما}
 \label{chap2sec8}
 تابع گاما\LTRfootnote{Gamma Function}
  که آن را با
 $\Gamma$
-نشان می‌‌دهند از تابع فاکتوریل مشتق شده است و برای یک عدد صحیح مثبت مقدار آن از رابطه
-\ref{eq13}
-بدست می‌‌آید. تابع گاما در واقع برای تمام اعداد نامنفی حتی اعدد مختلظ نیز تعریف می‌‌شود. برای یک عدد مختلط با بخش حقیقی مثبت مقدار این تابع از رابطه
-\ref{eq14}
-بدست می‌‌آید.
+نشان می‌‌دهند از تابع فاکتوریل مشتق شده است و برای یک عدد صحیح مثبت مقدار آن از رابطه:
 \begin{align}
-\centering
-\label{eq13}
+	\centering
+	\label{eq13}
 	\Gamma(n) = (n-1)!
 \end{align}
+بدست می‌‌آید. تابع گاما در واقع برای تمام اعداد نامنفی حتی اعدد مختلظ نیز تعریف می‌‌شود. برای یک عدد مختلط با بخش حقیقی مثبت مقدار این تابع از رابطه
 \begin{align}
-\centering
-\label{eq14}
+	\centering
+	\label{eq14}
 	\Gamma(z) = \int_{0}^{\infty} x^{z-1}e^{-x}dx
 \end{align}
-
-
+بدست می‌‌آید.
 
 \section{زنجیره‌ی مارکوف مونت کارلو}
 \label{chap2sec6}
@@ -253,25 +249,24 @@ $\theta$
 نشان می‌‌دهیم، را با بیشینه کردن احتمال یک مجموعه‌‌ی آموزش\LTRfootnote{Training Set}
  از داده‌ها که آن را به صورت
 $\textbf{X} = x_{1,...,K}$
-تعریف می‌‌کنیم، یاد می‌‌گیریم. که در این حالت احتمال مجموعه آموزش از رابطه
-\ref{eq5}
-بدست می‌‌آید. و یا با کمینه کردن مقدار منفی لگاریتم
+تعریف می‌‌کنیم، یاد می‌‌گیریم. که در این حالت احتمال مجموعه آموزش از رابطه‌ی
+\begin{align}
+	\centering
+	p(\textbf{X};\theta) = \prod_{k=1}^{K} \frac{1}{Z(\theta)} f(x_k;\theta)
+	\label{eq5}
+\end{align}
+بدست می‌‌آید. یا با کمینه کردن مقدار منفی لگاریتم
 $p(\textbf{X};\theta)$
 که آن را با
 $E(\textbf{X};\theta)$
 نشان داده و انرژی مربوط به مدل تعریف می‌کنیم و از رابطه‌ی 
-\ref{eq6}
+\begin{align}
+	\centering
+	E(\textbf{X};\theta) = \log Z(\theta) - \dfrac{1}{K} \sum_{i=1}^{K} \log f(x_i;\theta)
+	\label{eq6}
+\end{align}
 محاسبه می‌شود، اقدام به یاد گیری پارامتر‌های مدل می‌‌کنیم.
-\begin{align}
-\centering
-p(\textbf{X};\theta) = \prod_{k=1}^{K} \frac{1}{Z(\theta)} f(x_k;\theta)
-\label{eq5}
-\end{align}
-\begin{align}
-\centering
-E(\textbf{X};\theta) = \log Z(\theta) - \dfrac{1}{K} \sum_{i=1}^{K} \log f(x_i;\theta)
-\label{eq6}
-\end{align}
+
 
 در ادامه بر اساس نحوه‌ی تعریف تابع مدل احتمال، سه‌ حالت مختلف را بررسی‌ می‌‌کنیم و شرح می‌‌دهیم که الگوریتم یادگیری مقابله چیست، چرا و در چه حالتی به آن نیاز داریم.
 
@@ -302,14 +297,13 @@ $\sigma$
 
 برای حالت بعدی زمانی‌ را تصور کنید که در آن تابع مدل احتمال، برابر با مجموع
 N
-توزیع نرمال به شکل رابطه
-\ref{eg7}
-باشد.
+توزیع نرمال به شکل
 \begin{align}
-\centering
+	\centering
 	f(x;\theta)=\sum_{i=1}^N N(x;\mu_i,\sigma_i)
-\label{eg7}
+	\label{eg7}
 \end{align}
+باشد.
 در این حالت مجموعه پارامترهای مدل به شکل
 $\theta = \{\mu_{1,...,N},\sigma_{1,...,N} \}$ 
 خواهد بود. این حالت مشابه زمانی‌ است که ما یک مدل مخلوط یا مجموعه‌ای از خبره‌ها 
@@ -323,7 +317,7 @@ $\log Z(\theta) = \log N$.
 نسبت به هر یک از پارامتر‌های مدل، مدل جدیدی که وابسته به دیگر پارامتر‌های مدل است را تولید می‌‌کند. بنابراین مقدار بهینه برای پارامتر‌های مدل را به صورت مستقیم نمی‌‌توانیم محاسبه کنیم. راه جایگزین در این حالت استفاده از معادلات مشتقات جزئی‌ \LTRfootnote{Partial Differential}
 و روش نزول گرادیانی\LTRfootnote{Gradient Descent}
  با جستجوی خطی‌\LTRfootnote{Line Search}
-  است، که با استفاده از آن‌ها می‌‌توانیم نقطه مینیمم محلی برای انرژی در فضای پارامتر‌های مدل را پیدا کنیم.
+  است، که با استفاده از آن‌ها می‌‌توانیم نقطه کمینه محلی برای انرژی در فضای پارامتر‌های مدل را پیدا کنیم.
 
 اگر به مثال خود برای حالت قبل باز گردیم، شرایط بیان شده در اینجا، یعنی‌ استفاده از نزول گرادیانی به همراه جستجوی خطی‌ مشابه زمانی‌ است که ما در هنگام شب به همراه یک مشعل در آن زمین مواج حضور داشته باشیم. همچنین ما توانایی احساس شیب نقطه‌ای که در آن ایستاده‌ایم را خواهیم داشت، یا می‌‌توانیم شیب این نقطه را نسبت به تمام جهت‌های اطرافمان تا فاصله‌ی اندکی‌ با استفاده از نور مشعل تعیین کنیم. بنابراین با تاباندن نور مشعل به جهتی‌ که برای حرکت انتخاب کرده‌ایم می‌‌توانیم پایین‌ترین نقطه در آن جهت را مشاهده کنیم به آن‌جا رفته و سپس جهت جدیدی را برای حرکت انتخاب کنیم
  \cite{woodfordnotes}.
@@ -332,14 +326,13 @@ $\log Z(\theta) = \log N$.
  
  برای حالت سوم که حالت پایانی نیز است فرض کنید که ما تابع مدل احتمال را به صورت ضرب
  $N$
- توزیع نرمال به شکل رابطه
-\ref{eq8}
- در نظر می‌‌گیریم.
+ توزیع نرمال به شکل
  \begin{align}
- \centering
+ 	\centering
  	f(x;\theta)=\prod_{i=1}^N N(x;\mu_i,\sigma_i)
- \label{eq8}
+ 	\label{eq8}
  \end{align}
+ در نظر می‌‌گیریم.
 این شرایط هم ارز با یک مدل ضرب خبره‌ها است. در این حالت تابع قسمت‌بندی دیگر مقدار ثابتی نخواهد داشت و بسته به مقادیر پارامتر‌های توزیع‌های نرمال مقدار آن متفاوت خواهد بود. برای مثال زمانی‌ که مدل فقط شامل دو توزیع نرمال است و برای هر دوی آن‌ها
  $\sigma = 1$
  را در نظر بگیرید. اگر
@@ -362,7 +355,7 @@ $\log Z(\theta) = \log N$.
  ‌ باشد. در این حالت برای ارزیابی رابطه
 \ref{eq6}
  ما نیاز خواهیم داشت از انتگرال‌گیری عددی\LTRfootnote{Numerical Integration}
- استفاده کنیم. همچنین باید از مشتقات متناهی برای محاسبه گرادیان در یک نقطه‌ی داده شده در فضای پارامتر‌های مساله و همچنین روش‌های نزول گرادیانی برای پیدا کردن مینیمم محلی استفاده کنیم. برای فضاهای داده‌ای و پارامتری با ابعاد بالا زمان این انتگرال‌گیری فلج کننده\LTRfootnote{Crippling}
+ استفاده کنیم. همچنین باید از مشتقات متناهی برای محاسبه گرادیان در یک نقطه‌ی داده شده در فضای پارامتر‌های مساله و همچنین روش‌های نزول گرادیانی برای پیدا کردن کمینه محلی استفاده کنیم. برای فضاهای داده‌ای و پارامتری با ابعاد بالا زمان این انتگرال‌گیری فلج کننده\LTRfootnote{Crippling}
  خواهد بود. شرایط بیان شده تا اینجا منجر به وضعیتی می‌‌گردد که در آن ما تلاش می‌‌کنیم یک تابع انرژی را کمینه کنیم در حالی‌ که توانایی ارزیابی کردن آن را نداریم.
  
  اینجا زمانی‌ است که الگوریتم واگرایی مقابله به ما کمک می‌‌کند. اگر چه که ما نمی‌‌توانیم خود تابع انرژی را ارزیابی کنیم اما الگوریتم
@@ -377,8 +370,13 @@ $\log Z(\theta) = \log N$.
 \ref{chap2sec7sub1}
 توضیح داده شد، الگوریتم
 CD
-با توجه مجموعه پارامترهای مدل و داده‌های آموزش، گرادیان تابع انرژی را برای ما تخمین می‌‌زند.  در رابطه
-\ref{eq9}
+با توجه مجموعه پارامترهای مدل و داده‌های آموزش، گرادیان تابع انرژی را برای ما تخمین می‌‌زند.  در رابطه‌ی
+\begin{align}
+	\centering
+	\label{eq9}
+	\dfrac{\partial E(\textbf{X};\theta)}{\partial \theta} &= \dfrac{\log Z(\theta)}{\partial \theta} - \dfrac{1}{K}\sum_{i=1}^K\dfrac{\partial \log f(x_i;\theta)}{\partial \theta}\\\nonumber
+	&= \dfrac{\log Z(\theta)}{\partial \theta} - \left\langle \dfrac{\partial \log f(x_i;\theta)}{\partial \theta}\right\rangle_\textbf{X}
+\end{align}
  با استفاده از مشتقات جزئی فرمول محاسبه‌ی گرادیان را از را رابطه
 \ref{eq6}
  بدست می‌‌آوریم. در رابطه‌ی
@@ -390,30 +388,17 @@ $\star$
  با توجه به توزیع داده‌ی
 \textbf{X}
  می‌ باشد.
-\begin{align}
-\centering
-\label{eq9}
-	\dfrac{\partial E(\textbf{X};\theta)}{\partial \theta} &= \dfrac{\log Z(\theta)}{\partial \theta} - \dfrac{1}{K}\sum_{i=1}^K\dfrac{\partial \log f(x_i;\theta)}{\partial \theta}\\\nonumber
-	&= \dfrac{\log Z(\theta)}{\partial \theta} - \left\langle \dfrac{\partial \log f(x_i;\theta)}{\partial \theta}\right\rangle_\textbf{X}
-\end{align}
+
 اولین ترم در سمت راست رابطه‌‌ی
 \ref{eq9}
 از تابع قسمت‌بندی مشتق می‌گردد و همانطور که در رابطه‌ی
 \ref{eg4}
 مشاهده می‌‌گردد شامل یک انتگرال‌گیری بر روی
 $x$
-می‌باشد. با جایگذاری این رابطه به رابطه‌ی
-\ref{eq10}
-می‌رسیم. همان‌طور که در بخش
-\ref{chap2sec7sub1}
-بحث کردیم محاسبه‌ی این انتگرال در حالت کلی‌ از نظر جبری غیر عملی‌ است. اما در رابطه‌ی
-\ref{eq10}
-روشن است که می‌‌توانیم با نمونه گرفتن از توزیع
-$p(x;\theta)$
-این انتگرال را به صورت عددی تقریب بزنیم.
+است. با جایگذاری این رابطه به رابطه‌ی
 \begin{align}
-\centering
-\label{eq10}
+	\centering
+	\label{eq10}
 	\dfrac{\partial\log Z(\theta)}{\partial \theta} &= \dfrac{1}{Z(\theta)}\dfrac{\partial Z(\theta)}{\partial(\theta)}\\ \nonumber
 	&=\dfrac{1}{Z(\theta)}\dfrac{\partial}{\partial(\theta)}\int f(x;\theta)dx\\ \nonumber
 	&=\dfrac{1}{Z(\theta)}\int \dfrac{\partial f(x;\theta)}{\partial(\theta)}dx\\	\nonumber
@@ -421,6 +406,13 @@ $p(x;\theta)$
 	&= \int p(x;\theta) \dfrac{\partial \log f(x;\theta)}{\partial(\theta)}dx\\ \nonumber
 	&= \left\langle \dfrac{\partial \log f(x;\theta)}{\partial(\theta)}\right\rangle_{p(x;\theta)}
 \end{align}
+می‌رسیم. همان‌طور که در بخش
+\ref{chap2sec7sub1}
+بحث کردیم محاسبه‌ی این انتگرال در حالت کلی‌ از نظر جبری غیر عملی‌ است. اما در رابطه‌ی
+\ref{eq10}
+روشن است که می‌‌توانیم با نمونه گرفتن از توزیع
+$p(x;\theta)$
+این انتگرال را به صورت عددی تقریب بزنیم.
 از آن‌جا که ما مقدار دقیق تابع قسمت‌بندی را نمی‌‌دانیم لذا نمی‌‌توانیم به صورت مستقیم از
 $p(x;\theta)$
 نمونه تولید کنیم. اما با استفاده از تعداد زیادی چرخه نمونه‌برداری
@@ -440,13 +432,12 @@ $\textbf{X}^0 = \textbf{X}$.
 با جایگذاری این روابط در رابطه‌ی
 \ref{eq9}
 به رابطه‌ی
-\ref{eq11}
-می‌ رسیم.
 \begin{align}
-\centering
-\label{eq11}
+	\centering
+	\label{eq11}
 	\dfrac{\partial E(\textbf{X};\theta)}{\partial \theta} = \left\langle \dfrac{\partial \log f(x; \theta)}{\partial \theta} \right\rangle_{\textbf{X}^{\infty}} - \left\langle \dfrac{\partial \log f(x;\theta)}{\partial \theta}\right\rangle_{\textbf{X}^0}
 \end{align}
+می‌ رسیم.
 
 تعداد زیاد چرخه‌‌ی نمونه‌برداری
 MCMC
@@ -459,15 +450,14 @@ MCMC
 برای همگرایی الگوریتم به مقدار بیشینه مورد انتظار کفایت می‌‌کند
 \cite{carreira2005contrastive}.
 در نتیجه به منظور کمینه کردن تابع انرژی رابطه‌ی به روز‌رسانی کردن مجموعه پارامتر‌های ما به شکل رابطه‌ی
-\ref{eq12}
+\begin{align}
+	\centering
+	\label{eq12}
+	\theta_{t+1} = \theta_t + \eta \left(  \left\langle \dfrac{\partial \log f(x; \theta)}{\partial \theta} \right\rangle_{\textbf{X}^0} - \left\langle \dfrac{\partial \log f(x;\theta)}{\partial \theta}\right\rangle_{\textbf{X}^1}  \right) 
+\end{align}
 می‌گردد که در آن
 $\eta$
 ضریب یادگیری است و باید بر اساس زمان همگرایی و ثبات یادگیری الگوریتم به صورت تجربی‌ مشخص گردد.
-\begin{align}
-\centering
-\label{eq12}
-	\theta_{t+1} = \theta_t + \eta \left(  \left\langle \dfrac{\partial \log f(x; \theta)}{\partial \theta} \right\rangle_{\textbf{X}^0} - \left\langle \dfrac{\partial \log f(x;\theta)}{\partial \theta}\right\rangle_{\textbf{X}^1}  \right) 
-\end{align}
 
 \section{کیسه‌ی کلمات}
 \label{chap2sec10}

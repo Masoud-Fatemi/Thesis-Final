@@ -7,7 +7,7 @@
 
 \section{مدل پایه}
 \label{chap4sec2}
-مدل پایه در این پژوهش  شبکه عصبی ماشین بلتزمن محدود می‌باشد که پیش از این در بخش
+مدل پایه در این پژوهش  شبکه عصبی ماشین بلتزمن محدود است که پیش از این در بخش
 \ref{chap3sec2sub1}
  آن را
 RBM
@@ -17,8 +17,12 @@ RBM
 \ref{chap4-fig1}
 نشان داده شده است،
  RBM 
- یک مدل بدون نظارت برای داده‌های باینری می‌باشد که در دسته‌ی مدل‌های مولد احتمالاتی  قرار می‌گیرد. در این مدل با بیشینه کردن یک تابع انرژی، یا کمینه کردن مقدار منفی‌ آن که به صورت رابطه
-\ref{chap4-eq1}
+ یک مدل بدون نظارت برای داده‌های باینری است که در دسته‌ی مدل‌های مولد احتمالاتی  قرار می‌گیرد. در این مدل با بیشینه کردن یک تابع انرژی، یا کمینه کردن مقدار منفی‌ آن که به صورت رابطه‌ی
+\begin{align}
+	\centering
+	\label{chap4-eq1}
+	E(\textbf{v},\textbf{h}) = -\sum_{i} \sum_{j} v_iW_{ij}h_j - \sum_i v_ia_i - \sum_j h_jb_j
+\end{align}
 تعریف می‌‌شود، توزیع‌های احتمالی‌ موجود در داده‌های ورودی یاد گرفته می‌شود و از داده‌های ورودی ویژگی‌ استخراج می‌‌گردد. در رابطه‌ی
 \ref{chap4-eq1}
 مجموعه‌ی پارامترهای مدل به صورت
@@ -42,42 +46,35 @@ $H$
 نیز بیان گردید در مدل
  RBM
  داده‌های ورودی و لایه‌ی پنهان متناظر با آن که توسط مدل از بردار ورودی بدست می‌‌آید هر دو در حالت باینری (۰ یا ۱) هستند که این امر یکی‌ از محدودیت‌های این روش است.
-\begin{align}
-	\centering
-	\label{chap4-eq1}
-	E(\textbf{v},\textbf{h}) = -\sum_{i} \sum_{j} v_iW_{ij}h_j - \sum_i v_ia_i - \sum_j h_jb_j
-\end{align}
+
 
 در مدل
 RBM
 احتمال هر ترکیب
 $(\textbf{v},\textbf{h})$
 از رابطه‌ی
-\ref{chap4-eq2}
-بدست می‌‌آید که در آن
-$Z(\theta)$
-تابع قسمت‌بندی است که مقدار آن با استفاده از رابطه‌ی 
-\ref{chap4-eq3}
-محاسبه می‌شود و تضمین می‌کند که مقدار بدست آمده برای هر ترکیب
-$(\textbf{v},\textbf{h})$
-یک مقدار صحیح احتمالی‌ (بین ۰ و ۱) است. در این مدل احتمال هر بردار ورودی از رابطه‌ی
-\ref{chap4-eq4}
-بدست می‌‌آید.
 \begin{align}
 	\centering
 	\label{chap4-eq2}
 	p(\textbf{v},\textbf{h}) = \dfrac{1}{Z(\theta)} e^{-E(\textbf{v},\textbf{h})}
 \end{align}
+بدست می‌‌آید که در آن
+$Z(\theta)$
+تابع قسمت‌بندی است که مقدار آن با استفاده از رابطه‌ی 
 \begin{align}
 	\centering
 	\label{chap4-eq3}
 	Z = \sum_{\textbf{v}, \textbf{h}}e^{-E(\textbf{v},\textbf{h})}
 \end{align}
+محاسبه می‌شود و تضمین می‌کند که مقدار بدست آمده برای هر ترکیب
+$(\textbf{v},\textbf{h})$
+یک مقدار صحیح احتمالی‌ (بین ۰ و ۱) است. در این مدل احتمال هر بردار ورودی از رابطه‌ی
 \begin{align}
 	\centering
 	\label{chap4-eq4}
 	p(\textbf{v}) = \sum_{h} \dfrac{1}{Z(\theta)} e^{-E(\textbf{v},\textbf{h})}
 \end{align}
+بدست می‌‌آید.
 
 برای آموزش این مدل از الگوریتم
 CD
@@ -89,12 +86,12 @@ $p(\textbf{h}|\textbf{v})$
 \begin{align}
 	\centering
 	\label{chap4-eq5}
-	p(\textbf{h}|\textbf{v})=\dfrac{p(\textbf{h},\textbf{v})}{p(\textbf{v})} &=\dfrac{\dfrac{1}{Z}e^{-E(\textbf{v},\textbf{h})}}{\sum_{h}p(\textbf{v},h)}\\\nonumber
-								&=\dfrac{\dfrac{1}{Z}e^{vWh^{T}+a^{T}\textbf{v}+b^{T}h}}{\sum_{h}\dfrac{1}{Z}e^{\textbf{v}Wh^{T}+a^{T}\textbf{v}+b^{T}h}}\\\nonumber
-								&=\dfrac{e^{\textbf{v}Wh^{T}}.e^{a^{T}\textbf{v}}.e^{b^{T}h}}{\sum_{h}e^{vWh^{T}}.e^{a^{T}\textbf{v}}.e^{b^{T}h}}
-								=\dfrac{e^{\textbf{v}Wh^{T}+b^{T}h}}{\sum_{h}e^{\textbf{v}Wh^{T}+b^{T}h}}
-								=\dfrac{e^{\textbf{v}Wh^{T}+b^{T}h}}{Z'}\\\nonumber
-								&=\dfrac{1}{Z'}exp\left\lbrace \textbf{v}Wh^{T}+b^{T}h\right\rbrace
+	p(\textbf{h}|\textbf{v})=\dfrac{p(\textbf{h},\textbf{v})}{p(\textbf{v})} &=\dfrac{\dfrac{1}{Z}e^{-E(\textbf{v},\textbf{h})}}{\sum_{h}p(\textbf{v},\textbf{h})}\\\nonumber
+								&=\dfrac{\dfrac{1}{Z}e^{\textbf{v}W\textbf{h}^{T}+\textbf{a}^{T}\textbf{v}+\textbf{b}^{T}\textbf{h}}}{\sum_{h}\dfrac{1}{Z}e^{\textbf{v}W\textbf{h}^{T}+\textbf{a}^{T}\textbf{v}+\textbf{b}^{T}\textbf{h}}}\\\nonumber
+								&=\dfrac{e^{\textbf{v}W\textbf{h}^{T}}.e^{\textbf{a}^{T}\textbf{v}}.e^{\textbf{b}^{T}\textbf{h}}}{\sum_{h}e^{\textbf{v}W\textbf{h}^{T}}.e^{\textbf{a}^{T}\textbf{v}}.e^{\textbf{b}^{T}\textbf{h}}}
+								=\dfrac{e^{\textbf{v}W\textbf{h}^{T}+\textbf{b}^{T}\textbf{h}}}{\sum_{h}e^{\textbf{v}W\textbf{h}^{T}+\textbf{b}^{T}\textbf{h}}}
+								=\dfrac{e^{\textbf{v}W\textbf{h}^{T}+\textbf{b}^{T}\textbf{h}}}{Z'}\\\nonumber
+								&=\dfrac{1}{Z'}exp\left\lbrace \textbf{v}W\textbf{h}^{T}+\textbf{b}^{T}\textbf{h}\right\rbrace
 								=\dfrac{1}{Z'}exp \left\lbrace \sum_{j=1}^{H}\textbf{v}W_jh_j + \sum_{j=1}^{H}b_jh_j \right\rbrace\\\nonumber
 								&\Rightarrow p(\textbf{h}|\textbf{v})=\dfrac{1}{Z'}\prod_{j=1}^{H}exp\left\lbrace \textbf{v}W_jh_j + b_jh_j \right\rbrace
 \end{align}
@@ -106,7 +103,7 @@ $p(\textbf{h}|\textbf{v})$
 	\label{chap4-fig1}
 \end{figure}
 
-در ترم نهایی در رابطه
+در ترم نهایی در رابطه‌ی
 \ref{chap4-eq5}
 مشاهده می‌شود که مقدار
 $p(\textbf{h}|\textbf{v})$
@@ -121,13 +118,12 @@ $h_j$ها
 نسبت به یکدیگر دارای استقلال شرطی هستند. در نتیجه می‌توان رابطه‌ی
 \ref{chap4-eq5}
 را به شکل رابطه‌ی
-\ref{chap4-eq6}
-بازنویسی کرد.
 \begin{align}
 	\centering
 	\label{chap4-eq6}
 	p(\textbf{h}|\textbf{v})=\prod_{j=1}^{H}p(h_j|\textbf{v})	
 \end{align}
+بازنویسی کرد. همچنین داریم:
 \begin{align}
 	\centering
 	\label{chap4-eq7}
@@ -152,20 +148,20 @@ $\{\textbf{v}^{t}\}_{t=1}^{n}$
 به عنوان داده‌های آموزش در اختیار است. هدف پیدا کردن پارامتر‌های
 $W, \textbf{a}, \textbf{b}$
 به صورتی‌ است که لگاریتم درست‌نمایی برای مشاهده‌ی داده‌های آموزش بیشینه باشد. به بیان ریاضی‌ می‌‌خواهیم مقدار رابطه‌ی
-\ref{chap4-eq10}
-را نسبت به مجموعه پارامتر‌های
-$\theta = \{W, \textbf{a}, \textbf{b}\}$
-بیشینه کنیم.
 \begin{align}
 	\centering
 	\label{chap4-eq10}
 	\ell(W, \textbf{a}, \textbf{b}) &= \sum_{t=1}^{n}\log p(\textbf{v}^t) = \sum_{t=1}^{n}\log \sum_h p(\textbf{v}^t, h)\\\nonumber
-									&= \sum_{t=1}^{n}\log\dfrac{1}{Z} \sum_h e^{-E(\textbf{v}^t,h)} = \sum_{t=1}^{n}\log \sum_h e^{-E(\textbf{v}^t,h)} - n\log Z\\\nonumber
-									&= \sum_{t=1}^{n}\log\sum_h e^{-E(\textbf{v}^t,h)} - n\log\sum_{\textbf{v},\textbf{h}}exp\left\lbrace -E(\textbf{v}^t,h)\right\rbrace\\\nonumber
+	&= \sum_{t=1}^{n}\log\dfrac{1}{Z} \sum_h e^{-E(\textbf{v}^t,h)} = \sum_{t=1}^{n}\log \sum_h e^{-E(\textbf{v}^t,h)} - n\log Z\\\nonumber
+	&= \sum_{t=1}^{n}\log\sum_h e^{-E(\textbf{v}^t,h)} - n\log\sum_{\textbf{v},\textbf{h}}exp\left\lbrace -E(\textbf{v}^t,h)\right\rbrace\\\nonumber
 \end{align}
+را نسبت به مجموعه پارامتر‌های
+$\theta = \{W, \textbf{a}, \textbf{b}\}$
+بیشینه کنیم.
+
 رابطه‌ی
 \ref{chap4-eq10}
-را معاد‌له لگاریتم درست‌نمایی تعریف می‌‌کنیم که برای بیشینه کردن آن نسبت به مجموعه پارامتر‌های
+را معاد‌له‌ی لگاریتم درست‌نمایی تعریف می‌‌کنیم که برای بیشینه کردن آن نسبت به مجموعه پارامتر‌های
 $\theta$
 باید از آن نسبت به پارامترهای این مجموعه مشتق گرفت.
 \begin{align}
@@ -190,7 +186,11 @@ $p(\textbf{v},\textbf{h})$
  است. با توجه به رابطه‌ی
 \ref{chap4-eq12}
 برای بدست آوردن ترم اول در رابطه‌ی
-\ref{chap4-eq13}
+\begin{align}
+	\centering
+	\label{chap4-eq13}
+	\triangledown_W \ell(W, \textbf{a}, \textbf{b})=\sum_{t=1}^{n} \textbf{v}^{t^T} \hat{h}^t - nE_{p(\textbf{v},\textbf{h})}[\textbf{v}^T\textbf{h}]
+\end{align}
 برای هر بردار
 $\textbf{v}$
 مقدار
@@ -223,7 +223,7 @@ $\textbf{v}$
 $\textbf{v}$
 از این بردار
 $\textbf{h}$
-می‌باشد. این چرخه تا زمانی که به یک حالت تعادل دست یابید ادامه پیدا می‌کند، در حالت تعادل مقدار بردارهای
+است. این چرخه تا زمانی که به یک حالت تعادل دست یابید ادامه پیدا می‌کند، در حالت تعادل مقدار بردارهای
 $\textbf{v}$
 و
 $\textbf{h}$
@@ -234,25 +234,18 @@ $\textbf{v}$
 و
 $\textbf{h}$
 مقدار روابط
-\ref{chap4-eq14}
-و
-\ref{chap4-eq15}
-نیز محاسبه می‌‌گردد.
-\begin{align}
-	\centering
-	\label{chap4-eq13}
-	\triangledown_W \ell(W, \textbf{a}, \textbf{b})=\sum_{t=1}^{n} \textbf{v}^{t^T} \hat{h}^t - nE_{p(\textbf{v},\textbf{h})}[\textbf{v}^T\textbf{h}]
-\end{align}
 \begin{align}
 	\centering
 	\label{chap4-eq14}
 	\triangledown_{\textbf{a}} \ell(W, \textbf{a}, \textbf{b})=\sum_{t=1}^{n} \textbf{v}^{t} - nE_{p(\textbf{v},\textbf{h})}[\textbf{v}] 
 \end{align}
+و
 \begin{align}
 	\centering
 	\label{chap4-eq15}
 	\triangledown_{\textbf{b}} \ell(W, \textbf{a}, \textbf{b})=\sum_{t=1}^{n} \textbf{h}^{t} - nE_{p(\textbf{v},\textbf{h})}[\textbf{h}] 
 \end{align}
+نیز محاسبه می‌‌گردد.
 
 همان‌طور که پیش از این در بخش
 \ref{chap2sec7}
@@ -271,15 +264,15 @@ Gibbs
 در نهایت برای کمینه کردن تابع انرژی رابطه‌ی بروز‌رسانی کردن مجموعه پارامتر‌های 
 $\theta$
  به شکل رابطه‌ی
-\ref{chap4-eq16}
-می‌گردد که در آن
-$\epsilon$
-ضریب یادگیری است و به صورت تجربی‌ مشخص گردد.
 \begin{align}
 	\centering
 	\label{chap4-eq16}
 	\theta_{t+1} = \theta_t + \epsilon \left( E_{P_{data}}[\triangledown_{\theta} -E(\textbf{v},\textbf{h})] - E_{P_{model}}[\triangledown_{\theta} -E(\textbf{v},\textbf{h})] \right) 
 \end{align}
+می‌گردد که در آن
+$\epsilon$
+ضریب یادگیری است و به صورت تجربی‌ مشخص گردد.
+
 
 \section{ماشین بلتزمن محدود با واحدهای قابل مشاهده صحیح}
 \label{chap4sec3}
@@ -287,7 +280,7 @@ $\epsilon$
 \ref{chap4sec2}
 مدل استاندارد
 RBM
-می‌باشد که به صورت دقیق مورد بررسی‌ قرار گرفت و به عنوان مدل پایه برای روش پیشنهادی در این پژوهش در نظر گرفته می‌‌شود. برای تعریف ساختار مورد نظر در این پایان‌‌نامه جهت مدل‌سازی احساس و موضوع نیاز به معرفی‌ و بررسی‌ نمونه‌های پیچیده‌تری از مدل
+است که به صورت دقیق مورد بررسی‌ قرار گرفت و به عنوان مدل پایه برای روش پیشنهادی در این پژوهش در نظر گرفته می‌‌شود. برای تعریف ساختار مورد نظر در این پایان‌‌نامه جهت مدل‌سازی احساس و موضوع نیاز به معرفی‌ و بررسی‌ نمونه‌های پیچیده‌تری از مدل
 RBM
 استاندارد است.
 
@@ -355,14 +348,13 @@ $\textbf{h} \in \{0,1\}^H$
 $\textbf{V}$
 ماتریس باینری قابل مشاهده باشد که برای هر داده‌ی ورودی ساخته می‌‌شود، در این صورت تابع انرژی برای حالت
 $\{\textbf{V},\textbf{h}\}$
-به شکل رابطه
-\ref{chap4-eq17}
-تعریف می‌‌شود.
+به شکل
 \begin{align}
 	\centering
 	\label{chap4-eq17}
 	E(\textbf{V},\textbf{h})=-\sum_{i=1}^{D}\sum_{j=1}^{H}\sum_{k=1}^{K}W_{ijk}h_jv_{ik}-\sum_{i=1}^{D}\sum_{k=1}^{K}v_{ik}a_{ik} - \sum_{j=1}^{H}h_jb_j
 \end{align}
+تعریف می‌‌شود.
 
 در رابطه‌ی‌
 \ref{chap4-eq17}
@@ -382,20 +374,28 @@ $j$ام
 $\textbf{b}_{1 \times H}$
 بردار بایاس برای لایه‌ی پنهان است. احتمالی‌ که این ساختار به ماتریس باینری قابل مشاهده‌ی
 $\textbf{V}$
-اختصاص می‌‌دهد از رابطه‌ی
-\ref{chap4-eq18}
- بدست می‌‌آید.
+اختصاص می‌‌دهد از
  \begin{align}
  	\centering
  	\label{chap4-eq18}
  	p(\textbf{V}) = \sum_{h} \dfrac{1}{Z} e^{-E(\textbf{V},\textbf{h})} \quad\quad ; \quad
  	Z = \sum_{\textbf{V},\textbf{h}} e^{-E(\textbf{V},\textbf{h})} 
  \end{align}
+ بدست می‌‌آید.
 
-در این ساختار توزیع‌های شرطی برای لایه‌های قابل مشاهده و پنهان به شکل روابط
-\ref{chap4-eq19}
+
+در این ساختار توزیع‌های شرطی برای لایه‌های قابل مشاهده و پنهان به شکل
+\begin{align}
+	\centering
+	\label{chap4-eq19}
+	p(v_{ik}=1|\textbf{h})=\dfrac{exp(a_{ik}+\sum_{j=1}^{H}h_jW_{ijk})}{\sum_{k=1}^{K}exp(a_{ik}+\sum_{j=1}^{H}h_jW_{ijk})}
+\end{align}
 و
-\ref{chap4-eq20}
+\begin{align}
+	\centering
+	\label{chap4-eq20}
+	p(h_{j}=1|\textbf{V})=\sigma \left( b_j +  \sum_{i=1}^{D}\sum_{k=1}^{K}W_{ijk}v_{ik} \right)
+\end{align}
 هستند. همان‌طور که مشاهده می‌‌گردد توزیع شرطی مربوط به لایه‌ی قابل مشاهده کاملا با رابطه‌ی
 \ref{chap4-eq9}
 که برای مدل
@@ -426,24 +426,16 @@ $K$
 $K$
 مقدار ممکن برای آن، یک توزیع چند احتمالی‌ چندجمله‌ای ازدرجه‌ی
 $K$
-می‌باشد.
-\begin{align}
-	\centering
-	\label{chap4-eq19}
-	p(v_{ik}=1|\textbf{h})=\dfrac{exp(a_{ik}+\sum_{j=1}^{H}h_jW_{ijk})}{\sum_{k=1}^{K}exp(a_{ik}+\sum_{j=1}^{H}h_jW_{ijk})}
-\end{align}
-\begin{align}
-	\centering
-	\label{chap4-eq20}
-	p(h_{j}=1|\textbf{V})=\sigma \left( b_j +  \sum_{i=1}^{D}\sum_{k=1}^{K}W_{ijk}v_{ik} \right)
-\end{align}
+است.
+
+
 
 \section{مدل مولد براساس تعداد کلمات}
 \label{chap4sec4}
 
 مدلی‌ که در این بخش به صورت کامل آن را شرح می‌‌دهیم و گسترش یافته‌ی مدل معرفی‌ شده در بخش
 \ref{chap4sec3}
-می‌باشد در واقع همان مدل
+است در واقع همان مدل
 RS
  است که در بخش
 \ref{chap3sec3sub5}
@@ -459,7 +451,7 @@ RS
 \ref{chap4sec3}
 بر می‌‌گردیم و مدل معرفی‌ شده در آن جا را در این حالت اندکی‌ بررسی‌ می‌‌کنیم. در بخش
 \ref{chap4sec3}
-گفته شد که مقدار هر ویژگی‌ می‌‌تواند از یک مینیمم تا یک بیشینه باشد، حال فرض کنید که بحث مدل‌سازی موضوع بر روی داده‌های متنی است و پس از ساخت لغت‌نامه می‌خواهیم از مدل بخش
+گفته شد که مقدار هر ویژگی‌ می‌‌تواند از یک کمینه تا یک بیشینه باشد، حال فرض کنید که بحث مدل‌سازی موضوع بر روی داده‌های متنی است و پس از ساخت لغت‌نامه می‌خواهیم از مدل بخش
 \ref{chap4sec3}
 استفاده کنیم. در اینجا مقدار هر ویژگی‌ برابر با اندیس یکی‌ از کلمات لغت‌نامه است. هر سند ورودی پس از انجام پیش پردازش‌های لازم به صورت یک دنباله از کلمات تبدیل شده است که هر کدام از این کلمات برابر با یکی‌ از کلمات لغت‌نامه هستند. به این ترتیب در ماتریس ورودی به مدل که یک ماتریس به انداز‌ه‌ی
 $K \times D$
@@ -475,8 +467,12 @@ $D$
 RBM
 جدا می‌‌سازیم که به تعداد کلمات همان سند دارای واحد
 Softmax
-می‌باشد. در این حالت ورودی دیگر یک ماتریس باینری نخواهد بود و به صورت برداری از تعداد کلمات موجود در آن سند است که می‌‌توانیم ترتیب را در آن‌ها نادیده بگیریم. رابطه‌ی محاسبه‌ی انرژی در این حالت به شکل رابطه‌ی
-\ref{chap4-eq21}
+است. در این حالت ورودی دیگر یک ماتریس باینری نخواهد بود و به صورت برداری از تعداد کلمات موجود در آن سند است که می‌‌توانیم ترتیب را در آن‌ها نادیده بگیریم. رابطه‌ی محاسبه‌ی انرژی در این حالت به شکل
+\begin{align}
+	\centering
+	\label{chap4-eq21}
+	E(\textbf{v},\textbf{h})=-\sum_{j=1}^{H}\sum_{k=1}^{K}W_{jk}h_j\hat{v}_{k}-\sum_{k=1}^{K}v_{k}a_{k} - D\sum_{j=1}^{H}h_jb_j
+	\end{align}
 است که در آن
 $\hat{v}^k = \sum_{i=1}^{D}v_{ik}$
 است. به عبارت دیگر
@@ -486,11 +482,6 @@ $K$
 که 
 $K$
 همان اندازه لغت‌نامه است و از محاسبه‌ی حاصل جمع سطر‌های ماتریس باینری ورودی بدست می‌‌آید.
-\begin{align}
-	\centering
-	\label{chap4-eq21}
-	E(\textbf{v},\textbf{h})=-\sum_{j=1}^{H}\sum_{k=1}^{K}W_{jk}h_j\hat{v}_{k}-\sum_{k=1}^{K}v_{k}a_{k} - D\sum_{j=1}^{H}h_jb_j
-\end{align}
 با تغییرات انجام گرفته در لایه‌ی قابل مشاهده و تعویض ساختار ورودی، در ماتریس وزن بین این لایه و لایه‌ی پنهان و همچنین بایاس لایه‌ی قابل مشاهده تغییراتی‌ رخ می‌‌دهد. در رابطه
 \ref{chap4-eq21}، $W$
 ماتریسی با اندازه‌ی
@@ -499,32 +490,31 @@ $K \times H$
 $\textbf{a}$
 یک بردار با اندازه‌ی
 $1 \times K$
-می‌ باشند.
+هستند.
 
 در این مدل که آن را
 Softmax
-تکرار شده نامیدیم روابط شرطی محاسبه‌ی لایه‌ی قابل مشاهده و لایه‌ی پنهان به شکل روابط
-\ref{chap4-eq22}
-و
-\ref{chap4-eq23}
-می‌ باشند.
+تکرار شده نامیدیم روابط شرطی محاسبه‌ی لایه‌ی قابل مشاهده و لایه‌ی پنهان به شکل
 \begin{align}
 	\centering
 	\label{chap4-eq22}
 	p(v_{i}=w|\textbf{h})=\dfrac{exp(a_{w}+\sum_{j=1}^{H}h_jW_{wj})}{\sum_{k=1}^{K}exp(a_{w}+\sum_{j=1}^{H}W_{wj})}
-\end{align}
+	\end{align}
+و
 \begin{align}
 	\centering
 	\label{chap4-eq23}
 	p(h_{j}=1|\textbf{V})=\sigma \left( Db_j + \sum_{k=1}^{K}W_{kj}\hat{v}_k \right)
 \end{align}
-همانطور که مشاهده می‌‌شود در روابط
+هستند.
+
+همان‌طور که مشاهده می‌‌شود در روابط
 \ref{chap4-eq21}
 و
 \ref{chap4-eq23}
 ترم بایاس برای لایه‌ی پنهان با اندازه سند جاری نیز متناسب است. وجود این تناسب در پیاده‌سازی‌های تجربی‌ و هنگامی که با اسناد با طول‌های متفاوت سر و کار داریم بسیار حیاتی است. در این مدل نیز برای آموزش از الگوریتم
 CD
-استفاده می‌‌شود، رابطه‌ی بروزرسانی نیز همان است که در بخش
+استفاده می‌‌شود، رابطه‌ی به روزرسانی نیز همان است که در بخش
 \ref{chap4sec2}
 و رابطه
 \ref{chap4-eq16}
@@ -532,9 +522,7 @@ CD
 N
 سند آموزش که به شکل
 $\{\textbf{V}_n\}_{n=1}^{N}$
-می‌باشد رابطه‌ي بروزرسانی برای یک عنصر ماتریس وزن به شکل رابطه‌ی
-\ref{chap4-eq25}
-می‌ باشد.
+است رابطه‌ي به روزرسانی برای یک عنصر ماتریس وزن به شکل
 \begin{align}
 	\centering
 	\label{chap4-eq24}
@@ -545,6 +533,8 @@ $\{\textbf{V}_n\}_{n=1}^{N}$
 	\label{chap4-eq25}
 	\triangle W_{jk} = \alpha \left( E_{P_{data}}[\hat{v}_kh_j]-E_{P_{model}}[\hat{v}_kh_j]  \right)
 \end{align}
+است.
+
 
 \section{مدل پیشنهادی مولد احتمالی احساس/موضوع}
 \label{chap4sec5}
@@ -606,26 +596,17 @@ $n$ام
 
 مدل پیشنهادی در این پژوهش 
 (شکل \ref{chap4-fig3})
- یک مدل نظارت شده است که برای هر سند با مینیمم کردن یک تابع انرژی که به شکل رابطه‌‌ی
-\ref{chap4-eq26}
-تعریف می‌‌شود، به مدل‌سازی احساس و موضوع به صورت مشترک در داده‌های متنی می‌‌پردازد. با اضافه شدن یک لایه‌ی جدید در این مدل به همراه ماتریس وزن و همچنین بردار بایاس همراه با آن، روابط موجود نسبت به ساختار‌های پیشین تغییر می‌کند. همان‌طور که در رابطه‌ی
-\ref{chap4-eq26}
-مشاهده می‌‌شود، برای محاسبه‌ی انرژی در مدل پیشنهادی ترم‌های مربوط به وزن و بایاس لایه‌ی احساس نیز در بدست آوردن مقدار نهایی مشارکت دارند. پس از محاسبه‌ی مقدار انرژی به کمک رابطه‌ی
-\ref{chap4-eq26}،
- با استفاده از فرمول
-\ref{chap4-eq27}
-احتمالی‌ که مدل به هر سند و ‌لایه‌ی احساس همراه با آن اختصاص می‌‌دهد، محاسبه می‌‌گردد. برای آموزش این مدل و بروزرسانی پارامترهای شبکه که شامل ماتریس‌های وزن بین لایه‌ی قابل‌مشاهده و پنهان و همچنین لایه‌ی احساس و پنهان هستند و همچنین بایاس‌های هر سه‌ لایه از الگوریتم
-CD
-که در بخش
-\ref{chap2sec7}
-معرفی‌ شده به شکل رابطه‌ی
-\ref{chap4-eq28}
-استفاده می‌‌شود.
+ یک مدل نظارت شده است که برای هر سند با کمینه کردن یک تابع انرژی که به شکل
 \begin{align}
 	\label{chap4-eq26}
 	E(\textbf{V},\textbf{s},\textbf{h})=-\sum_{j=1}^{H}\sum_{k=1}^{K}W_{kj}h_j\hat{v}_{k}&-\sum_{j=1}^{H}\sum_{l=1}^{S}U_{lj}h_js_l\\\nonumber
 	&-\sum_{k=1}^{K}v_{k}a_{k} -\sum_{l=1}^{S}s_lc_l- D\sum_{j=1}^{H}h_jb_j
 \end{align}
+تعریف می‌‌شود، به مدل‌سازی احساس و موضوع به صورت مشترک در داده‌های متنی می‌‌پردازد. با اضافه شدن یک لایه‌ی جدید در این مدل به همراه ماتریس وزن و همچنین بردار بایاس همراه با آن، روابط موجود نسبت به ساختار‌های پیشین تغییر می‌کند. همان‌طور که در رابطه‌ی
+\ref{chap4-eq26}
+مشاهده می‌‌شود، برای محاسبه‌ی انرژی در مدل پیشنهادی ترم‌های مربوط به وزن و بایاس لایه‌ی احساس نیز در بدست آوردن مقدار نهایی مشارکت دارند. پس از محاسبه‌ی مقدار انرژی به کمک رابطه‌ی
+\ref{chap4-eq26}،
+ با استفاده از
 \begin{align}
 	\centering
 	\label{chap4-eq27}
@@ -633,11 +614,17 @@ CD
 	p(\textbf{v},\textbf{s}) = \dfrac{1}{Z} \sum_{h}  e^{-E(\textbf{v},\textbf{s},\textbf{h})} \ \ ,
 	Z = \sum_{\textbf{v}}\sum_{\textbf{s}}\sum_{\textbf{h}} e^{-E(\textbf{v},\textbf{s},\textbf{h})} 
 \end{align}
+احتمالی‌ که مدل به هر سند و ‌لایه‌ی احساس همراه با آن اختصاص می‌‌دهد، محاسبه می‌‌گردد. برای آموزش این مدل و بروزرسانی پارامترهای شبکه که شامل ماتریس‌های وزن بین لایه‌ی قابل‌مشاهده و پنهان و همچنین لایه‌ی احساس و پنهان هستند و همچنین بایاس‌های هر سه‌ لایه از الگوریتم
+CD
+که در بخش
+\ref{chap2sec7}
+معرفی‌ شده به شکل
 \begin{align}
 	\centering
 	\label{chap4-eq28}
 	\triangle\theta = \alpha \left( E_{P_{data}}[\theta]-E_{P_{model}}[\theta]\right) \Rightarrow \theta_{t+1} = \theta_t + \triangle\theta
 \end{align}
+استفاده می‌‌شود.
 در رابطه
 \ref{chap4-eq26}، $\theta=\{W, U, \textbf{a}, \textbf{b}, \textbf{c} \}$
 مجموعه پارامتر‌های مدل است که در آن
@@ -672,10 +659,22 @@ $Sentiment$
 $Visible$، $Sentiment$
 و
 $Hidden$
- به شکل روابط
-\ref{chap4-eq29}
-تا
-\ref{chap4-eq31}
+ به شکل
+\begin{align}
+	\centering
+	\label{chap4-eq29}
+	p(v_{i}=w|\textbf{h})=\dfrac{exp(a_{w}+\sum_{j=1}^{H}W_{wj}h_j)}{\sum_{k=1}^{K}exp(a_{w}+\sum_{j=1}^{H}W_{wj}h_j)}
+\end{align}
+\begin{align}
+	\centering
+	\label{chap4-eq30}
+	p(s_{l}=1|\textbf{h})=\dfrac{exp(c_{l}+\sum_{j=1}^{H}U_{lj}h_j)}{\sum_{l=1}^{S}exp(c_{l}+\sum_{j=1}^{H}U_{lj}h_j)}
+\end{align}
+\begin{align}
+	\centering
+	\label{chap4-eq31}
+	p(h_{j}=1|\textbf{v},\textbf{s})=\sigma \left( Db_j + \sum_{k=1}^{K}W_{kj}\hat{v}_k + \sum_{l=1}^{S}U_{lj}s_l \right)
+\end{align}
 هستند. در اینجا چون مقدار لایه‌ی
 $Hidden$
 به هر دو مقدار لایه‌ی
@@ -703,21 +702,6 @@ $Sentiment$
 مقدار این دو بردار از یک توزیع شرطی که تنها به مقدار بردار
 $Hidden$
 وابسته است نمونه گرفته می‌‌شوند.
-\begin{align}
-	\centering
-	\label{chap4-eq29}
-	p(v_{i}=w|\textbf{h})=\dfrac{exp(a_{w}+\sum_{j=1}^{H}W_{wj}h_j)}{\sum_{k=1}^{K}exp(a_{w}+\sum_{j=1}^{H}W_{wj}h_j)}
-\end{align}
-\begin{align}
-	\centering
-	\label{chap4-eq30}
-	p(s_{l}=1|\textbf{h})=\dfrac{exp(c_{l}+\sum_{j=1}^{H}U_{lj}h_j)}{\sum_{l=1}^{S}exp(c_{l}+\sum_{j=1}^{H}U_{lj}h_j)}
-\end{align}
-\begin{align}
-	\centering
-	\label{chap4-eq31}
-	p(h_{j}=1|\textbf{v},\textbf{s})=\sigma \left( Db_j + \sum_{k=1}^{K}W_{kj}\hat{v}_k + \sum_{l=1}^{S}U_{lj}s_l \right)
-\end{align}
 
 با توجه به خصوصیات بیان شده برای تابع
 $Softmax$

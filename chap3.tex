@@ -240,8 +240,12 @@ RBM
 	\cite{dayan1996does}\cite{bengio1999modeling}
 	برای محاسبه‌ی احتمال مرتفع گردیده است. در این شبکه‌ها برای محاسبه‌ی احتمال مشاهده‌ی یک بردار ورودی مانند
 	$\textbf{V}$
-	توسط مدل از رابطه‌ای مشابه رابطه
-	\ref{chap3-eq4}
+	توسط مدل از رابطه‌ای مشابه رابطه‌ی
+	\begin{align}
+		\centering
+		\label{chap3-eq4}
+		p(\textbf{V}) = \prod_{i=1}^{D}(v_i|\textbf{V}_{parent(i)})
+	\end{align}
 	استفاده می‌‌شود، که در آن
 	$\textbf{V}_{parent(i)} = \textbf{V}_{<i}$
 	اشاره به یک زیربردار دارد که شامل تمام ابعاد قبل از
@@ -256,11 +260,6 @@ RBM
 	$p(\textbf{V})$
 	از نظر محاسباتی امکان پذیر است
 	\cite{larochelle2011neural}.
-	\begin{align}
-	\centering
-	\label{chap3-eq4}
-	p(\textbf{V}) = \prod_{i=1}^{D}(v_i|\textbf{V}_{parent(i)})
-	\end{align}
 	
 	در مدل
 	NADE
@@ -445,14 +444,14 @@ $"this"$
 	$w_n$
 	در صورت داشتن یک موضوع مشاهده نشده مانند
 	$z$
-	همان‌طور که در رابطه
-	\ref{chap3-eq5}
-	مشاهده می‌‌شود دارای استقلال شرطی از یکدیگر هستند.
+	همان‌طور که در رابطه‌ی
 	\begin{align}
-	\centering
-	\label{chap3-eq5}
+		\centering
+		\label{chap3-eq5}
 		p(d,w_n) = p(d) \sum_{z} p(w_n|z)p(z|d)
 	\end{align}
+	مشاهده می‌‌شود دارای استقلال شرطی از یکدیگر هستند.
+
 	همان‌طور که پیش از این در بخش
 	\ref{chap2sec12}
 	بیان شد، یک فرض اساسی‌ که مدل‌های موضوعی بر اساس آن ساخته می‌‌شوند در نظر گرفتن چند موضوع برای هر سند است. مدل
@@ -571,7 +570,11 @@ $k$
 تعداد موضوع‌ها را نشان می‌دهد، است.
 $\alpha$
 احتمال اولیه‌ی یک توزیع دیریکله است که با نمونه گرفتن از آن با استفاده از رابطه‌ی
-\ref{chap3-eq6}
+\begin{align}
+	\centering
+	\label{chap3-eq6}
+	p(\theta|\alpha) = \dfrac{\Gamma (\sum_{i=1}^{k} \alpha_i)}{\prod_{i=1}^{k} \Gamma(\alpha_i)} \theta_1^{\alpha_1 -1}\ ...\ \theta_k^{\alpha_k -1}
+\end{align}
 به ازای هر سند بردار
 $\theta$
 که یک توزیع چندجمله‌ای است و نشان دهنده‌ی توزیع موضوع‌ها در هر سند است را بدست می‌‌آوریم. در رابطه‌ی
@@ -579,11 +582,7 @@ $\theta$
 تابع گاما است که در بخش
 \ref{chap2sec8}
 آن را معرفی‌ کردیم.
-\begin{align}
-	\centering
-	\label{chap3-eq6}
-	p(\theta|\alpha) = \dfrac{\Gamma (\sum_{i=1}^{k} \alpha_i)}{\prod_{i=1}^{k} \Gamma(\alpha_i)} \theta_1^{\alpha_1 -1}\ ...\ \theta_k^{\alpha_k -1}
-\end{align}
+
 
 با داشتن
 $\alpha$
@@ -594,14 +593,18 @@ $\theta$، $\textbf{z}$
 و
 $\textbf{w}$
 از رابطه‌ی
-\ref{chap3-eq7}
+\begin{align}
+	\centering
+	\label{chap3-eq7}
+	p(\theta,\textbf{z},\textbf{w}|\alpha,\beta) = p(\theta|\alpha)\prod_{n=1}^{N}p(z_n|\theta)p(w_n|z_n,\beta)
+\end{align}
 بدست می‌‌آید. در رابطه‌ی
 \ref{chap3-eq7}، $\theta$
 یک توزیع چندجمله‌ا‌ی موضوعی، بردار
 $\textbf{z}$
 یک مجموعه
-$N$تائی‌
- از موضوع‌ها که از
+$N$تایی
+‌ از موضوع‌ها که از
 $\theta$
 نمونه گرفته می‌‌شود و
 $\textbf{w}$
@@ -616,25 +619,18 @@ $\theta$
 و سیگما روی
 $z$
  احتمال حاشیه‌ای برای یک سند به فرم رابطه‌ی
- \ref{chap3-eq8}
+\begin{align}
+	\centering
+	\label{chap3-eq8}
+	p(\textbf{w}|\alpha,\beta) = \int p(\theta|\alpha) \left( \prod_{n=1}^{N} \sum_{z_n}p(z_n|\theta)p(w_n|z_n,\beta) \right)   d\theta
+\end{align}
   بدست می‌‌آید. و در نهایت با ضرب احتمال‌های حاشیه‌ای برای هر سند احتمال یک مجموعه سند به شکل رابطه‌‌ی
- \ref{chap3-eq9}
+\begin{align}
+	\centering
+	\label{chap3-eq9}
+	p(D|\alpha,\beta) =\prod_{d=1}^{M} \int p(\theta|\alpha) \left( \prod_{n=1}^{N} \sum_{z_n}p(z_n|\theta)p(w_n|z_n,\beta) \right)d\theta_d
+\end{align}
   بدست می‌‌آید.
-\begin{align}
-\centering
-\label{chap3-eq7}
-	p(\theta,\textbf{z},\textbf{w}|\alpha,\beta) = p(\theta|\alpha)\prod_{n=1}^{N}p(z_n|\theta)p(w_n|z_n,\beta)
-\end{align}
-\begin{align}
-\centering
-\label{chap3-eq8}
-p(\textbf{w}|\alpha,\beta) = \int p(\theta|\alpha) \left( \prod_{n=1}^{N} \sum_{z_n}p(z_n|\theta)p(w_n|z_n,\beta) \right)   d\theta
-\end{align}
-\begin{align}
-\centering
-\label{chap3-eq9}
-p(D|\alpha,\beta) =\prod_{d=1}^{M} \int p(\theta|\alpha) \left( \prod_{n=1}^{N} \sum_{z_n}p(z_n|\theta)p(w_n|z_n,\beta) \right)d\theta_d
-\end{align}
 
 برای استنتاج در مدل
 LDA
@@ -700,15 +696,27 @@ RBM
 	نیز مانند مدل
 	RBM
 	یک تابع انرژی وابسته به سند ورودی و بردار پنهان آن به شکل رابطه‌ی
-	\ref{chap3-eq10}
+	\begin{align}
+		\centering
+		\label{chap3-eq10}
+		E(\textbf{V},\textbf{h}) = -\sum_{j=1}^{F} \sum_{k=1}^{K} W_j^k h_j \hat{v}^k - \sum_{k=1}^K \hat{v}^k b^k -D\sum_{j=1}^F h_ja_j
+	\end{align}
 	تعریف می‌‌شود که ضمن کمینه کردن آن توزیع موضوع‌های مختلف در متن توسط مدل یاد گرفته می‌‌شود. احتمال مشاهده‌ی هر سند ورودی در این مدل به کمک رابطه‌ی
-	\ref{chap3-eq11}
+	\begin{align}
+		\centering
+		\label{chap3-eq11}
+		p(\textbf{V}) = \dfrac{1}{Z}\sum_{h}exp(-E(\textbf{V},\textbf{h}))
+	\end{align}
 	محاسبه می‌‌گردد که در آن
 	$Z$
 	همانند مدل
 	RBM
-	تابع قسمت‌بندی است و از رابطه
-	\ref{chap3-eq12}
+	تابع قسمت‌بندی است و از رابطه‌ی
+	\begin{align}
+		\centering
+		\label{chap3-eq12}
+		Z = \sum_{V}\sum_{h}exp(-E(\textbf{V},\textbf{h}))
+	\end{align}
 	بدست می‌‌آید.
 	\begin{figure}[!t]
 		\centering
@@ -716,21 +724,6 @@ RBM
 		\caption{مدل Softmax تکرارشده \cite{hinton2009replicated}}
 		\label{chap3-fig6}
 	\end{figure}	
-	\begin{align}
-	\centering
-	\label{chap3-eq10}
-	E(\textbf{V},\textbf{h}) = -\sum_{j=1}^{F} \sum_{k=1}^{K} W_j^k h_j \hat{v}^k - \sum_{k=1}^K \hat{v}^k b^k -D\sum_{j=1}^F h_ja_j
-	\end{align}
-	\begin{align}
-	\centering
-	\label{chap3-eq11}
-	p(\textbf{V}) = \dfrac{1}{Z}\sum_{h}exp(-E(\textbf{V},\textbf{h}))
-	\end{align}	
-	\begin{align}
-	\centering
-	\label{chap3-eq12}
-	Z = \sum_{V}\sum_{h}exp(-E(\textbf{V},\textbf{h}))
-	\end{align}
 	در رابطه‌ی
 	\ref{chap3-eq10}, D
 	اندازه سند ورودی،
@@ -792,26 +785,25 @@ DocNADE
 \cite{larochelle2012neural}.
 
 رابطه‌های
-\ref{chap3-eq13}
+\begin{align}
+	\centering
+	\textbf{h}_i(\textbf{v}_{<i}) = sigm(\textbf{c}+\sum_{k<i}\textbf{W}_{:,v_k})
+	\label{chap3-eq13}
+\end{align}
 و
-\ref{chap3-eq14}
-به ترتیب نحوه به دست آوردن مقادیر لایه‌ی پنهان و احتمال مشاهده‌ی هر کلمه به شرط تمام کلمات پیشین در مدل
+\begin{align}
+	\centering
+	p(v_i=w|\textbf{v}_{<i}) = \frac{exp(b_w +\textbf{V}_{w,:}\textbf{h}_i(\textbf{v}_{<i})}{\sum_{w'}exp(b_{w'}+\textbf{V}_{w',:}\textbf{h}_i(\textbf{v}_{<i})}
+	\label{chap3-eq14}
+\end{align}
+به ترتیب نحوه‌ی به دست آوردن مقادیر لایه‌ی پنهان و احتمال مشاهده‌ی هر کلمه به شرط تمام کلمات پیشین در مدل
 DocNADE
  را نشان می‌‌دهند. در جدول
 \ref{chap3-tb1}
 نمونه‌ای از چهار موضوع یاد گرفته شده توسط مدل
 DocNADE
 به همراه ده کلمه‌ای‌ که در هر موضوع بیشترین احتمال را داشته‌اند مشاهده می‌شود.
-\begin{align}
-\centering
-\textbf{h}_i(\textbf{v}_{<i}) = sigm(\textbf{c}+\sum_{k<i}\textbf{W}_{:,v_k})
-\label{chap3-eq13}
-\end{align}
-\begin{align}
-\centering
-p(v_i=w|\textbf{v}_{<i}) = \frac{exp(b_w +\textbf{V}_{w,:}\textbf{h}_i(\textbf{v}_{<i})}{\sum_{w'}exp(b_{w'}+\textbf{V}_{w',:}\textbf{h}_i(\textbf{v}_{<i})}
-\label{chap3-eq14}
-\end{align}
+
   \begin{figure}[!t]
   	\centering
   	\includegraphics[scale=0.4]{chap3-img/DocNADE}
