@@ -2,12 +2,19 @@
 % In this file the first few pages are typeset.
 % Make changes accordingly.
 %*************************************************
+\pagenumbering{adadi}
+%***************************
+% Page 1: Blank
+%***************************
+\thispagestyle{empty}
+\mbox{}
+\pagebreak
+
 
 %***************************
-% Page 1: Besmelah
+% Page 2: Besmelah
 %***************************
-\pagenumbering{adadi}
-\setcounter{page}{5}
+%\setcounter{page}{5}
 \thispagestyle{empty}
 \begin{center}
 	~\vfill
@@ -17,7 +24,7 @@
 \pagebreak
 
 %***************************
-% Page 2: Title
+% Page 3: Title
 %***************************
 \thispagestyle{empty}
 \newgeometry{left=3cm,right=3cm,top=2cm}
@@ -73,7 +80,61 @@
 \pagebreak
 
 %***************************
-% Page3: Acknowledgment (Optional)
+% page 4: Signatures
+%***************************
+\thispagestyle{empty}
+\newgeometry{left=3cm,right=3cm,top=2cm}
+\begin{center}
+\includegraphics[height=3cm]{firstpage-img/IUTLogoFA}
+%\vspace{0.5cm}
+
+{\large
+	\textbf{دانشگاه صنعتی اصفهان}\\
+	دانشکده  برق و کامپیوتر
+}
+	%	\vspace{5cm}
+	
+	\vfill
+	
+	{\Large
+		پایان‌نامه کارشناسی ارشد رشته مهندسی کامپیوتر -- هوش‌مصنوعی و رباتیک \\
+		\vspace{.3cm}
+		مسعود فاطمی\\
+		\vspace{.3cm}
+		تحت عنوان\\
+	}
+\end{center}
+
+\begin{center}
+	{\large
+		\textbf{ توسعه‌ی ماشین بلتزمن محدود برای مدل‌سازی مشترک موضوع و احساس در داده‌های متنی}
+	}
+\end{center}
+\vspace*{1.8cm}
+در تاریخ ۹۶/۳/۲۷ توسط کمیته‌ی تخصصی زیر مورد بررسی و تصویب نهایی قرار گرفت:\\
+
+{\normalsize
+	
+	\begin{tabular}{rr}
+		\vspace*{.8cm}
+		1- استاد راهنمای پایان‌نامه  & \hspace{2cm} دکتر مهران صفایانی \\
+		\vspace{.8cm}
+		۲- استاد مشاور پایان‌نامه &\hspace{2cm} دکتر عبدالرضا میرزایی \\
+		\vspace{.8cm}
+		۳-استاد داور  &\hspace{2cm}  دکتر محمدرضا احمدزاده\\
+		\vspace{.8cm}
+		۴-استاد داور (اختیاری) &\hspace{2cm}  دکتر مریم ذکری \\
+		\vspace{.8cm}
+		سرپرست تحصیلات تکمیلی دانشکده &\hspace{2cm} دکتر محمد رضا تابان \\
+	\end{tabular}
+}
+\restoregeometry
+\pagebreak
+
+
+
+%***************************
+% Page 5: Acknowledgment (Optional)
 %***************************
 \thispagestyle{empty}
 \vspace*{3cm}
@@ -89,9 +150,48 @@
 \pagebreak
 
 %***************************
+% page 6: Rights
+%***************************
+\thispagestyle{empty}
+\newgeometry{left=6cm,right=6cm}
+
+\begin{spacing}{3}
+	\leavevmode
+	\vfill
+	\parbox{8 cm}{
+		
+		\textbf{\Large کلیه حقوق مادی مترتب بر نتایج مطالعات، ابتکارات و نوآوری‌های ناشی از تحقیق موضوع این پایان‌نامه متعلق به دانشگاه صنعتی اصفهان است.}
+		
+	}
+	\vfill
+\end{spacing}
+\restoregeometry
+\pagebreak
+
+%***************************
+% page 7: Dedication
+%***************************
+\thispagestyle{empty}
+\newgeometry{left=4.5cm,right=4.5cm,top=0cm,bottom=0cm}
+
+{\LARGE
+\centering
+\textbf{تقدیم به \\ پدر و مادر عزیزم }
+
+}
+\bgroup\vspace*{\fill}
+\renewcommand{\\}{\vspace{-.5em}\newline\relax}
+\newcommand{\تب}[1][.5]{\hspace*{#1cm}}
+\noindent
+
+	\vspace*{\fill}\egroup
+	\pagebreak
+
+
+
+%***************************
 % 8th page: Table of contents
 %***************************
-
 \titleformat{\chapter}[display]
 	{\normalfont\LARGE\bfseries\centering}{\chaptertitlename ~ \tartibi{chapter}}{20pt}{\LARGE}
 
@@ -113,3 +213,4 @@
 \titlespacing*{\chapter}{0pt}{3.5cm}{6cm}
 \titleformat{\chapter}[display]
 	{\normalfont\LARGE\bfseries\raggedright}{\chaptertitlename ~ \tartibi{chapter}}{20pt}{\LARGE}
+
