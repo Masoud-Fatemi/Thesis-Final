@@ -172,7 +172,7 @@
 % page 7: Dedication
 %***************************
 \thispagestyle{empty}
-\newgeometry{left=4.5cm,right=4.5cm,top=0cm,bottom=0cm}
+\newgeometry{left=4.5cm,right=4.5cm,top=5cm,bottom=5cm}
 
 {\LARGE
 \centering
@@ -190,7 +190,7 @@
 
 
 %***************************
-% 8th page: Table of contents
+% page 8-13: Table of contents
 %***************************
 \titleformat{\chapter}[display]
 	{\normalfont\LARGE\bfseries\centering}{\chaptertitlename ~ \tartibi{chapter}}{20pt}{\LARGE}
@@ -205,9 +205,201 @@
 \listoftables
 \pagebreak
 
+%***************************
+% page 14: vocabulary
+%***************************
+\titleformat{\chapter}[display]
+{\normalfont\LARGE\bfseries\centering}{\chaptertitlename ~ \tartibi{chapter}}{20pt}{\LARGE}
 
-%\addcontentsline{toc}{section}{فهرست تصاویر}
-%\listoffigures
+\newgeometry{left=2cm,right=3cm,top=3cm,bottom=2.5cm,includehead=false,headsep=1cm,footnotesep=.5cm}
+\begin{center}
+	\textbf{{\LARGE فهرست واژگان}}
+\end{center}
+\begin{table}[h]
+\begin{minipage}{0.5\textwidth}
+	\begin{tabular}{r}
+	چکیده\\
+	تحلیل\\
+	هوش مصنوعی\\
+	خود رگرسیو\\
+	کیسه‌ی کلمه\\
+	شبکه‌ی بیزی\\
+	قانون بیز\\
+	طبقه‌بندی\\
+	خوشه\\
+	مدل شرطی\\
+	واگرأیی مقابله\\
+	مجموعه‌ی اسناد\\
+	شباهت کسینوسی\\
+	فلج کننده\\
+	داده کاوی\\
+	مدل‌های عمیق\\
+	مدل افتراقی\\
+	تخمین توزیع\\
+	تخمین\\
+	مدل مولد\\
+	نزول گرادیانی\\
+	مدل گرافی\\
+	مدل مخلوط گوسی\\
+	مدل مخفی‌ مارکوف\\
+	استنتاج\\
+	بازیابی اطلاعات\\
+	غیر عملی\\
+	توزیع احتمال مشترک\\
+	برچسب گذاری\\
+	تخصیص دیریکله‌ی پنهان\\
+	متغیر پنهان\\
+	ریشه‌یابی‌ نحوی\\
+	جستجوی خطی\\
+	رگرسیون خطی\\
+	یادگیری ماشین\\
+	زنجیر مارکوف مونت کارلو\\
+	بیشینه\\
+	بیشینه درست‌نمائی تقریبی\\
+	کمینه\\
+	مدل مخلوط کارشناس‌ها\\
+	چند حالته\\
+	پردازش زبان طبیعی\\
+	شبکه‌ی عصبی\\
+	
+	\end{tabular}
+\end{minipage}
+\begin{minipage}[c]{0.5\textwidth}
+\begin{latin}	
+	\begin{tabular}{l}
+		Abstract \\ 
+		Analysis\\ 
+		Artificial Intelligence\\ 
+		Autoregressive\\ 
+		Bag of Words\\ 
+		Bayesian Network\\ 
+		Bayesian Rule\\ 
+		Classification\\ 
+		Cluster\\ 
+		Conditional Model\\ 
+		Contrastive Divergence\\ 
+		Corpus\\ 
+		Cosine Similarity\\ 
+		Crippling\\ 
+		Data Mining\\ 
+		Deep Model\\ 
+		Discriminative Model\\ 
+		Distribution Estimation\\ 
+		Estimation\\ 
+		Generative Model\\ 
+		Gradient Descent\\ 
+		Graphical Model\\ 
+		Gaussian Mixture Model\\ 
+		Hidden Markov Model\\ 
+		Inference\\ 
+		Information Retrieval\\ 
+		Intractable\\ 
+		Joint Probability Distribution\\ 
+		Labeling\\ 
+		Latent Dirichlet Allocation\\
+		Latent Variable\\
+		Lemmatization\\
+		Line Search\\ 
+		Linear Regression\\ 
+		Machine Learning\\ 
+		Markov Chain Mont Carlo\\ 
+		Maximum\\ 
+		Maximum Likelihood Approximation\\ 
+		Minimum\\ 
+		Mixture of Experts Model\\ 
+		MultiModal\\ 
+		Natural Language Processing\\ 
+		Neural Network\\ 
+	\end{tabular}
+\end{latin}
+\end{minipage}
+\end{table}
+\begin{table}[!t]	
+\begin{minipage}{0.5\textwidth}
+	\begin{tabular}{r}
+		توزیع نرمال\\
+		تابع توانی‌ نرمال شده\\
+		انتگرال‌گیری عددی\\
+		متغیر مشاهده شده\\
+		کاوش عقاید\\
+		مشتقات جزئی\\
+		تابع قسمت‌بندی\\
+		سرگشتگی\\
+		مدل احتمالاتی\\
+		توزیع احتمالاتی\\
+		تابع چگالی احتمال\\
+		بازگشتی\\
+		رگرسیون\\
+		ماشین بلتزمن محدود\\
+		برگشت پذیر\\
+		بازبینی\\
+		داده‌ی نمونه\\
+		فضای نمونه\\
+		نمونه‌برداری\\
+		تحلیل احساس\\
+		تشخیص احساس\\
+		منحنی سیگمویدی\\
+		آماره\\
+		مدل آماری\\
+		ریشه‌یابی‌ لغوی\\
+		اطلاعات مفهومی\\
+		نظارت شده\\
+		ماشین بردار پشتیبان\\
+		متغیر هدف\\
+		مجموعه‌ی آزمون\\
+		داده‌ی متنی\\
+		کاوش متن\\
+		مدل موضوعی\\
+		مجموعه‌ی آموزش\\
+		زمین مواج\\
+		بدون نظارت\\ 
+	\end{tabular}
+\end{minipage}	
+\begin{minipage}[c]{0.5\textwidth}	
+\begin{latin}	
+	\begin{tabular}{l}
+		Normal Distribution\\ 
+		Normalized Exponential Function\\ 
+		Numerical Integration\\ 
+		Observed Variable\\ 
+		Opinion Mining\\ 
+		Partial Differential\\ 
+		Portion Function\\ 
+		Perplexity\\ 
+		Probabilistic Model\\ 
+		Probabilistic Distribution\\ 
+		Probability Density Function\\ 
+		Recurrent\\
+		Regression\\ 
+		Restricted Boltzman Machine\\ 
+		Reversible\\ 
+		Review\\ 
+		Sample Data\\ 
+		Sample Space\\ 
+		Sampling\\ 
+		Sentiment Analysis\\ 
+		Sentiment Detection\\ 
+		Sigmoid Curves\\ 
+		Statistic\\ 
+		Statistical Model\\ 
+		Stemming\\ 
+		Subjective Information\\ 
+		Supervised\\ 
+		Support Vector Machine\\ 
+		Target Variable\\ 
+		Test Set\\ 
+		Text Data\\ 
+		Text Mining\\ 
+		Topic Model\\ 
+		Training Set\\ 
+		Undulating Field\\ 
+		Unsupervised\\
+	\end{tabular}
+\end{latin}
+\end{minipage}
+\end{table}
+
+
 
 % change the font and margins of a chapter title
 \titlespacing*{\chapter}{0pt}{3.5cm}{6cm}
